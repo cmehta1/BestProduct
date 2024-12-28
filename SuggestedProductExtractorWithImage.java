@@ -131,7 +131,7 @@ public class SuggestedProductExtractorWithImage
     private static String callSentimentAPI(String serpApiResponse) throws Exception {
         String endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBqIFEWfWPCZ-17rA4XumrJvoccSzoGbD4";
 
-        String promptText = "\nAnalyze the following Walmart product search results and provide only the text output with the best product suggestion and its general review. Also create a review analysis in 2 lines. Provide thumbnail image link for the product as well.";
+        String promptText = "\nAnalyze the following Walmart product search results and provide only the text output with the best product suggestion and its general review. Also create a review analysis in 2 lines. Provide thumbnail image link and price for the product as well.";
 
         String requestBody = "{\"contents\":[{\"parts\":[{\"text\":\"" +
                 serpApiResponse.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n").replace("\r", "\\r") +
@@ -211,7 +211,7 @@ public class SuggestedProductExtractorWithImage
                                 recommendationContent.add(getScaledImageLabel(thumbnailUrl, 150, 150), BorderLayout.WEST);
                             }
 
-                            JLabel recommendationLabel = new JLabel("<html><br><br><b>Best Product Recommendation:</b><br>" + cleanText.toString().replace("\n", "<br>") + "</html>");
+                            JLabel recommendationLabel = new JLabel("<html><br><br><b>========OUR PICK========:</b><br>" + cleanText.toString().replace("\n", "<br>") + "</html>");
                             recommendationContent.add(recommendationLabel, BorderLayout.CENTER);
 
                             recommendationPanel.add(recommendationContent, BorderLayout.CENTER);
